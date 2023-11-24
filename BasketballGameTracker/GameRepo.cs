@@ -20,7 +20,7 @@ namespace BasketballGameTracker
 
         public Game GetGame(int id)
         {
-            return _conn.QuerySingle<Game>("SELECT * FROM games WHERE GameId = @id", new { id });
+            return _conn.Query<Game>("SELECT * FROM games WHERE GameId = @id", new { id }).FirstOrDefault(); 
 
         }
 
@@ -37,6 +37,13 @@ namespace BasketballGameTracker
 
             _conn.Execute("INSERT INTO games (HomeTeam, AwayTeam, Date, IsWatched, Rating, Comment) VALUES (@HomeTeam, @AwayTeam, @Date, @IsWatched, @Rating, @Comment);",
                 new { HomeTeam = gameToAdd.HomeTeam, AwayTeam = gameToAdd.AwayTeam, Date = gameToAdd.Date, IsWatched = gameToAdd.IsWatched, Rating = gameToAdd.Rating, Comment = gameToAdd.Comment });
+
+        }
+
+        public void DeleteGame(int id)
+        {
+            _conn.Execute("DELETE FROM games WHERE GameId = @id", new { id });
+
 
         }
     }

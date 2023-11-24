@@ -38,39 +38,43 @@ namespace BasketballGameTracker.Controllers
 
         public IActionResult UpdateGameToDatabase(Game game)
         {
-            _repo.UpdateGame(game);
-
-            return RedirectToAction("ViewGame", new { id = game.GameId });
+            if (game.GameId > 0)
+            {
+                _repo.UpdateGame(game);
+                return RedirectToAction("ViewGame", new { id = game.GameId });
+            }
+            else
+            {
+                // Handle the case where GameId is not set
+                return View("Error");
+            }
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult AddGame()
         {
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult AddGame(Game newGame)
         {
-            try
-            {
-                if (newGame == null)
-                {
-                    return BadRequest("Invalid game data");
-                }
-
-                // Add the new game to the database
+            // Add the new game to the database
                 _repo.AddGame(newGame);
-
                 
                 return RedirectToAction("ViewGame", new { id = newGame.GameId });
-            }
-            catch (Exception ex)
-            {
-               
-                return View("Error");
-            }
+            
+        }
+
+        [HttpPost]
+        public IActionResult DeleteGame(int id)
+        {
+            
+            _repo.DeleteGame(id);
+
+            // Redirect to the index or another appropriate action
+            return RedirectToAction("Index");
         }
 
 

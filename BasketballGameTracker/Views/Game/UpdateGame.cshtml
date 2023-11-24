@@ -1,6 +1,32 @@
 ﻿@model Game
 
-<form asp-action="UpdateGame" method="post">
+
+<style>
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+@using (Html.BeginForm("UpdateGameToDatabase", "Game", FormMethod.Post))
+{
     <div>
         <label asp-for="HomeTeam">Home Team:</label>
         <input asp-for="HomeTeam" />
@@ -14,7 +40,7 @@
         <input asp-for="Date" type="date" />
     </div>
     <div>
-        <label asp-for="IsWatched">Is Watched:</label>
+        <label asp-for="IsWatched">Watched:</label>
         <input asp-for="IsWatched" type="checkbox" />
     </div>
     <div>
@@ -28,4 +54,5 @@
     <div>
         <button type="submit">Update Game</button>
     </div>
-</form>
+}
+
