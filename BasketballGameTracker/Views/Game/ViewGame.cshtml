@@ -1,0 +1,29 @@
+﻿@model Game
+
+<h3>@Model.HomeTeam vs @Model.AwayTeam Details</h3>
+
+<table class="table">
+    <tr>
+        <th>Game ID</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Date</th>
+        <th>Watched?</th>
+        <th>Rating</th>
+        <th>Review</th>
+    </tr>
+    <tr>
+        <td>@Model.GameId</td>
+        <td>@Model.HomeTeam</td>
+        <td>@Model.AwayTeam</td>
+        <td>@Model.Date</td>
+        <td>@Model.IsWatched</td>
+        <td>@Model.Rating</td>
+        <td>@Model.Comment</td>
+
+    </tr>
+</table>
+
+<div style="display: block">
+    <a href="/Game/UpdateGame/@Model.GameId">Update this Game</a>
+</div>

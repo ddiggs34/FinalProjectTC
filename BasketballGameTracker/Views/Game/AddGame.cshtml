@@ -1,0 +1,31 @@
+﻿@model Game
+
+<form asp-action="AddGame" method="post">
+    <div>
+        <label asp-for="HomeTeam">Home Team:</label>
+        <input asp-for="HomeTeam" />
+    </div>
+    <div>
+        <label asp-for="AwayTeam">Away Team:</label>
+        <input asp-for="AwayTeam" />
+    </div>
+    <div>
+        <label asp-for="Date">Date:</label>
+        <input asp-for="Date" type="date" />
+    </div>
+    <div>
+        <label asp-for="IsWatched">Is Watched:</label>
+        <input asp-for="IsWatched" type="checkbox" />
+    </div>
+    <div>
+        <label asp-for="Rating">Rating:</label>
+        <input asp-for="Rating" type="number" min="1" max="5" />
+    </div>
+    <div>
+        <label asp-for="Comment">Comment:</label>
+        <textarea asp-for="Comment"></textarea>
+    </div>
+    <div>
+        <button type="submit">Add Game</button>
+    </div>
+</form>

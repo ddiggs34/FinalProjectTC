@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Game>
+
+<h2>Upcoming Games</h2>
+<table class="table">
+
+    <div style="display: block">
+        <a href="/Game/AddGame/">Add Game</a>
+    </div>
+
+    <tr>
+        <th>GameId</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Date</th>
+        <th>Watched</th>
+        <th>Rating</th>
+        <th>Your Review</th>
+    </tr>
+
+    @foreach (var game in @Model)
+    {
+        <tr>
+            <td><a href =/Game/ViewGame/@game.GameId>@game.GameId</a></td>
+            <td>@game.HomeTeam</td>
+            <td>@game.AwayTeam</td>
+            <td>@game.Date.ToShortDateString()</td>
+            <td>@(game.IsWatched ? "Yes" : "No")</td>
+            <td>@game.Rating</td>
+            <td>@game.Comment</td>
+        </tr>
+    }
+
+</table>
