@@ -1,5 +1,32 @@
 ﻿@model IEnumerable<Game>
 
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    a {
+        color: #FFA500; /* Orange link color */
+    }
+
+    table {
+        border: 2px solid orange; /* Orange border for the entire table */
+        border-collapse: collapse; /* Collapse borders to prevent double borders */
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid orange; /* Orange border for table cells */
+        padding: 8px;
+        text-align: left;
+        color: white; /* White text color for table cells */
+    }
+</style>
+
+<!-- Your existing table content -->
+
+
 <h2>Upcoming Games</h2>
 <table class="table">
 
@@ -8,13 +35,13 @@
     </div>
 
     <tr>
-        <th>GameId</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Date</th>
-        <th>Watched</th>
-        <th>Rating</th>
-        <th>Your Review</th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">GameId</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Home Team</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Away Team</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Date</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Watched</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Rating</a></th>
+        <th><a asp-action="Index" asp-route-sortOrder="rating_desc">Your Review</a></th>
     </tr>
 
     @foreach (var game in @Model)

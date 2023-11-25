@@ -3,6 +3,7 @@ using System.Data;
 using BasketballGameTracker.Models;
 using Dapper;
 
+
 namespace BasketballGameTracker
 {
     public class GameRepo : IGameRepo
@@ -42,7 +43,9 @@ namespace BasketballGameTracker
 
         public void DeleteGame(int id)
         {
-            _conn.Execute("DELETE FROM games WHERE GameId = @id", new { id });
+
+           
+            _conn.Execute("DELETE FROM games WHERE GameId = @id", new { id }); 
 
 
         }

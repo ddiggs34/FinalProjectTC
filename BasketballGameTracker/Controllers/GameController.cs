@@ -41,29 +41,30 @@ namespace BasketballGameTracker.Controllers
             if (game.GameId > 0)
             {
                 _repo.UpdateGame(game);
+                Console.WriteLine("Game updated successfully");
                 return RedirectToAction("ViewGame", new { id = game.GameId });
             }
             else
             {
-                // Handle the case where GameId is not set
+                Console.WriteLine("Error: GameId not set");
                 return View("Error");
             }
         }
 
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult AddGame()
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult AddGame(Game newGame)
         {
             // Add the new game to the database
                 _repo.AddGame(newGame);
                 
-                return RedirectToAction("ViewGame", new { id = newGame.GameId });
+                return RedirectToAction("Index");
             
         }
 
@@ -73,13 +74,35 @@ namespace BasketballGameTracker.Controllers
             
             _repo.DeleteGame(id);
 
-            // Redirect to the index or another appropriate action
+            
             return RedirectToAction("Index");
+        }
+
+        //add a sort function!!!
+
+
+        [HttpPost]
+            public IActionResult Index(string sortOrder)
+            {
+                var games = _repo.GetAllGames();
+
+                switch (sortOrder)
+                {
+                    case "rating_desc":
+                        games = games.OrderByDescending(g => g.Rating);
+                        break;
+                    default:
+                        games = games.OrderBy(g => g.Rating);
+                        break;
+                }
+
+                return View(games);
+            }
         }
 
 
     }
-}
+
 
 
 
