@@ -1,31 +1,37 @@
 ﻿@model Game
 
 <form asp-action="AddGame" method="post">
-    <div>
+    <div class="form-group">
         <label asp-for="HomeTeam">Home Team:</label>
-        <input asp-for="HomeTeam" />
+        <input asp-for="HomeTeam" class="form-control" />
     </div>
-    <div>
+
+    <div class="form-group">
         <label asp-for="AwayTeam">Away Team:</label>
-        <input asp-for="AwayTeam" />
+        <input asp-for="AwayTeam" class="form-control" />
     </div>
-    <div>
+
+    <div class="form-group">
         <label asp-for="Date">Date:</label>
-        <input asp-for="Date" type="date" />
+        <input asp-for="Date" type="date" class="form-control" />
     </div>
-    <div>
-        <label asp-for="IsWatched">Is Watched:</label>
+
+    <div class="form-group">
+        <label asp-for="IsWatched">Watched:</label>
         <input asp-for="IsWatched" type="checkbox" />
     </div>
-    <div>
+
+    <div class="form-group">
         <label asp-for="Rating">Rating:</label>
-        <input asp-for="Rating" type="number" min="1" max="5" />
+        <input asp-for="Rating" type="number" min="1" max="5" class="form-control" />
     </div>
-    <div>
+
+    <div class="form-group">
         <label asp-for="Comment">Comment:</label>
-        <textarea asp-for="Comment"></textarea>
+        <textarea asp-for="Comment" class="form-control"></textarea>
     </div>
-    <div>
-        <button type="submit">Add Game</button>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Game</button>
     </div>
 </form>
