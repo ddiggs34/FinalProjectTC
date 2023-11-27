@@ -62,19 +62,19 @@ namespace BasketballGameTracker.Controllers
         public IActionResult AddGame(Game newGame)
         {
             // Add the new game to the database
-                _repo.AddGame(newGame);
-                
-                return RedirectToAction("Index");
-            
+            _repo.AddGame(newGame);
+
+            return RedirectToAction("Index");
+
         }
 
         [HttpPost]
         public IActionResult DeleteGame(int id)
         {
-            
+
             _repo.DeleteGame(id);
 
-            
+
             return RedirectToAction("Index");
         }
 
@@ -82,26 +82,26 @@ namespace BasketballGameTracker.Controllers
 
 
         [HttpPost]
-            public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder)
+        {
+            var games = _repo.GetAllGames();
+
+            switch (sortOrder)
             {
-                var games = _repo.GetAllGames();
-
-                switch (sortOrder)
-                {
-                    case "rating_desc":
-                        games = games.OrderByDescending(g => g.Rating);
-                        break;
-                    default:
-                        games = games.OrderBy(g => g.Rating);
-                        break;
-                }
-
-                return View(games);
+                case "rating_desc":
+                    games = games.OrderByDescending(g => g.Rating);
+                    break;
+                default:
+                    games = games.OrderBy(g => g.Rating);
+                    break;
             }
+
+            return View(games);
         }
 
 
     }
+}
 
 
 
