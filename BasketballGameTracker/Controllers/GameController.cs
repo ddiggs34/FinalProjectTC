@@ -38,17 +38,18 @@ namespace BasketballGameTracker.Controllers
 
         public IActionResult UpdateGameToDatabase(Game game)
         {
-            if (game.GameId > 0)
-            {
+           /* if (game.GameId > 0)
+            { */
                 _repo.UpdateGame(game);
                 Console.WriteLine("Game updated successfully");
+
                 return RedirectToAction("ViewGame", new { id = game.GameId });
-            }
+            /*}
             else
             {
                 Console.WriteLine("Error: GameId not set");
                 return View("Error");
-            }
+            } */
         }
 
 

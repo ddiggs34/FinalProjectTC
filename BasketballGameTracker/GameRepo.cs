@@ -26,12 +26,11 @@ namespace BasketballGameTracker
         }
 
         public void UpdateGame(Game game)
-
         {
             _conn.Execute("UPDATE games SET HomeTeam = @HomeTeam, AwayTeam = @AwayTeam, Date = @Date, IsWatched = @IsWatched, Rating = @Rating, Comment = @Comment WHERE GameId = @id",
             new { game.HomeTeam, game.AwayTeam, game.Date, game.IsWatched, game.Rating, game.Comment, game.GameId });
-
         }
+
 
         public void AddGame(Game gameToAdd)
         {
