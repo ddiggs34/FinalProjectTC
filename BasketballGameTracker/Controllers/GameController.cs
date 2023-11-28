@@ -72,11 +72,19 @@ namespace BasketballGameTracker.Controllers
         [HttpPost]
         public IActionResult DeleteGame(int id)
         {
+            try
+            {
+                _repo.DeleteGame(id);
 
-            _repo.DeleteGame(id);
+                return RedirectToAction("Index");
 
-
-            return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
+     
         }
 
         //add a sort function!!!

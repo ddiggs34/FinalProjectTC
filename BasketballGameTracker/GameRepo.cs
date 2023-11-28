@@ -27,7 +27,8 @@ namespace BasketballGameTracker
 
         public void UpdateGame(Game game)
         {
-            _conn.Execute("UPDATE games SET HomeTeam = @HomeTeam, AwayTeam = @AwayTeam, Date = @Date, IsWatched = @IsWatched, Rating = @Rating, Comment = @Comment WHERE GameId = @id",
+            _conn.Execute("UPDATE games SET HomeTeam = @HomeTeam, AwayTeam = @AwayTeam, Date = @Date," +
+                " IsWatched = @IsWatched, Rating = @Rating, Comment = @Comment, GameId = @GameId WHERE GameId = @GameId",
             new { game.HomeTeam, game.AwayTeam, game.Date, game.IsWatched, game.Rating, game.Comment, game.GameId });
         }
 

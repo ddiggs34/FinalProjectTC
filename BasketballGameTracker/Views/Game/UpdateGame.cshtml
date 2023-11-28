@@ -52,6 +52,9 @@
         <textarea asp-for="Comment"></textarea>
     </div>
     <div>
+        <input asp-for="GameId" type="hidden" value="@Model.GameId" />
+    </div>
+    <div>
         <button type="submit">Update Game</button>
     </div>
 }
