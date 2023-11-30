@@ -2,6 +2,11 @@
 
 
 <style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
     label {
         display: block;
         margin-bottom: 5px;
@@ -16,13 +21,43 @@
     }
 
     button {
-        background-color: #4CAF50;
+        background-color: orange; /* Updated to orange */
         color: white;
         padding: 10px 15px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
     }
+
+    table.table {
+        background-color: black;
+        color: white;
+        border: 2px solid orange;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table.table th, table.table td {
+            border: 2px solid orange;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.table th {
+            background-color: black;
+            color: orange;
+        }
+
+    .btn {
+        color: white;
+        background-color: orange;
+        border: 1px solid orange;
+    }
+
+        .btn:hover {
+            background-color: darkorange;
+            border: 1px solid darkorange;
+        }
 </style>
 
 @using (Html.BeginForm("UpdateGameToDatabase", "Game", FormMethod.Post))
@@ -47,10 +82,13 @@
         <label asp-for="Rating">Rating:</label>
         <input asp-for="Rating" type="number" min="1" max="5" />
     </div>
-    <div>
-        <label asp-for="Comment">Comment:</label>
-        <textarea asp-for="Comment"></textarea>
+    <div class="form-group">
+        <label asp-for="Comment">Comment (Max 240 characters):</label>
+        <textarea asp-for="Comment" class="form-control" maxlength="240"></textarea>
     </div>
+
+
+
     <div>
         <input asp-for="GameId" type="hidden" value="@Model.GameId" />
     </div>

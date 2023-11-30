@@ -16,40 +16,65 @@ namespace BasketballGameTracker.Controllers
 
         public IActionResult Index()
         {
-            var games = _repo.GetAllGames();
-            return View(games);
+            try
+            {
+                var games = _repo.GetAllGames();
+                return View(games);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
         }
         public IActionResult ViewGame(int id)
         {
-            var game = _repo.GetGame(id);
+            try
+            {
+                var game = _repo.GetGame(id);
 
-            return View(game);
+                return View(game);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
         }
         public IActionResult UpdateGame(int id)
         {
-            var game = _repo.GetGame(id);
-
-            if (game == null)
+            try
             {
-                return View("GameNotFound");
+                var game = _repo.GetGame(id);
+
+                if (game == null)
+                {
+                    return View("GameNotFound");
+                }
+                return View(game);
             }
-            return View(game);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
         }
 
         public IActionResult UpdateGameToDatabase(Game game)
         {
-           /* if (game.GameId > 0)
-            { */
+            try
+            {
                 _repo.UpdateGame(game);
                 Console.WriteLine("Game updated successfully");
 
                 return RedirectToAction("ViewGame", new { id = game.GameId });
-            /*}
-            else
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("Error: GameId not set");
-                return View("Error");
-            } */
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
+
         }
 
 
@@ -62,19 +87,26 @@ namespace BasketballGameTracker.Controllers
         [HttpPost]
         public IActionResult AddGame(Game newGame)
         {
-            // Add the new game to the database
-            _repo.AddGame(newGame);
+            try
+            {
+                _repo.AddGame(newGame);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
 
         }
 
         [HttpPost]
-        public IActionResult DeleteGame(int id)
+        public IActionResult DeleteGame(Game game)
         {
             try
             {
-                _repo.DeleteGame(id);
+                _repo.DeleteGame(game);
 
                 return RedirectToAction("Index");
 
@@ -84,13 +116,13 @@ namespace BasketballGameTracker.Controllers
                 Console.WriteLine($"Error: {ex.Message}");
                 throw;
             }
-     
+
         }
 
         //add a sort function!!!
 
 
-        [HttpPost]
+      /*  [HttpPost]
         public IActionResult Index(string sortOrder)
         {
             var games = _repo.GetAllGames();
@@ -106,7 +138,8 @@ namespace BasketballGameTracker.Controllers
             }
 
             return View(games);
-        }
+        
+        */
 
 
     }

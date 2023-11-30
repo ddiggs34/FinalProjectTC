@@ -38,7 +38,7 @@
 </style>
 
 <div class="container mt-4">
-    <h3>@Model.HomeTeam vs @Model.AwayTeam Details</h3>
+    <h3>@Model.HomeTeam vs @Model.AwayTeam Review/Analysis</h3>
 
     <table class="table">
         <tr>
@@ -65,15 +65,21 @@
         <div class="col-md-6">
             <a href="/Game/UpdateGame/@Model.GameId" class="btn">Update this Game</a>
         </div>
-        <div class="col-md-6">
+
+        @using (Html.BeginForm("DeleteGame", "Game", "Post"))
+        
+        {
+            <div class="col-md-6">
             <form asp-action="DeleteGame" method="post">
-                <input type="hidden" asp-for="GameId" />
+                <input type="hidden" asp-for="GameId" value = "@Model.GameId" />
                 <button 
                     type="submit" 
                     class="btn"
                     onclick="return confirm('Are you sure you want to delete this game?')">Delete Game</button>
             </form>
         </div>
+        }
     </div>
 </div>
+        
 

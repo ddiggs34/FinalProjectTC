@@ -41,11 +41,11 @@ namespace BasketballGameTracker
 
         }
 
-        public void DeleteGame(int id)
+        public void DeleteGame(Game game)
         {
 
            
-            _conn.Execute("DELETE FROM games WHERE GameId = @id", new { id }); 
+            _conn.Execute("DELETE FROM games WHERE GameId = @GameId", new { game.GameId }); 
 
 
         }

@@ -8,7 +8,7 @@ namespace BasketballGameTracker
         public Game GetGame(int id);
         public void UpdateGame(Game game);
         public void AddGame(Game gameToAdd);
-        public void DeleteGame(int id);
+        public void DeleteGame(Game game);
 
 
 
